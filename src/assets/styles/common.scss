@@ -1,0 +1,139 @@
+/*************** reset style ******************/
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td { margin:0; padding:0; }
+body, button, input, select, textarea { font:12px/1.5tahoma, arial, \5b8b\4f53; }
+h1, h2, h3, h4, h5, h6{ font-size:100%; }
+address, cite, dfn, em, var { font-style:normal; }
+code, kbd, pre, samp { font-family:couriernew, courier, monospace; }
+small{ font-size:12px; }
+ul, ol { list-style:none; }
+a { text-decoration:none; }
+a:hover { text-decoration:underline; }
+sup { vertical-align:text-top; }
+sub{ vertical-align:text-bottom; }
+legend { color:#000; }
+fieldset, img { border:0; }
+button, input, select, textarea { font-size:100%; }
+table { border-collapse:collapse; border-spacing:0; }
+
+/*************** 颜色公共样式 ******************/
+$bg-1: #34405a;
+$bg-2: #202b3e;
+$bg-3: #275087;
+$bg-4: #273856;
+$bg-5: #172332;
+$bg-table-hover: #6d95dd;
+$bg-table-el-pagination-input: #2b395c;
+$bg-table-striped: #364971;
+$bg-6: #37496d;
+$bg-7: #275086;
+$bg-8: #5a89c6;
+$bg-9: #202b3d;
+$bg-10: #24569b;
+$bg-11: #273855;
+$bg-12: #222c45;
+$bg-13: #697897;
+$bg-14: #071f41;
+$bg-15: #283955;
+$bg-16: #618ec8;
+$bg-17: #cca165;
+$bg-18: #182947;
+$color-1: #d78c16;
+$color-2: #f9d96c;
+$color-3: #f45c5d;
+$color-4: #85d48c;
+$color-5: #4e94cf;
+$color-6: #e3af28;
+$white: #fff;
+
+/*************** 字体公共样式 ******************/
+$font-family: "楷体", "Kaiti SC", "STKaiti" !important;
+/*************** 高度公共样式 ******************/
+$header-height: 8%;
+$sidebar-width: 8%;
+$detail-top-height: 27%;
+$detail-bottom-height: 66%;
+/*************** 布局公共样式 ******************/
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+.flex-1 {
+  flex: 1;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.align-items-center {
+  align-items: center;
+}
+.justify-content-end {
+  justify-content: flex-end;
+}
+.justify-content-center {
+  justify-content: center;
+}
+.position-relative {
+  position: relative;
+}
+.justify-content-between {
+  justify-content: space-between;
+}
+.pagination-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100
+}
+body, html, #app {
+  font-family: $font-family;
+  min-width: 768px;
+  width: 100%;
+  height: 100%;
+  background-color: $bg-1;
+}
+
+.float-left{
+  float: left;
+}
+
+/*************** 页面公共样式 ******************/
+@mixin transform($property) {
+  transform: $property;
+  -ms-transform: $property;
+  -webkit-transform: $property;
+  -o-transform: $property;
+  -moz-transform: $property;
+}
+
+@mixin titleStyle(){
+  height: 30px;
+  line-height: 30px;
+  letter-spacing: 3px;
+  &:before{
+    content: '';
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 2px;
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    border-radius: 50%;
+  }
+}
+.common-box {
+  width: 100%;
+  height: calc(100% - 60px);
+}
+.common-content-container {
+  margin: 10px 15px;
+  width: calc(100% - 230px);
+}
+.dhwl-btn-disabled {
+  background-color: #bebebe !important;
+}
+

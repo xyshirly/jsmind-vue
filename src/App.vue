@@ -1,28 +1,23 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <js-map :data="TREE_DATA"></js-map>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+  import JsMap from "./components/jsmind-normal/JSMap";
+  import {aa, TREE_DATA} from './components/jsmind-normal/mock_data.js'
 
-export default {
-  name: 'app',
-  components: {
-    HelloWorld
+  export default {
+    components: {JsMap},
+    name: 'app',
+    data() {
+      return {
+        TREE_DATA: TREE_DATA
+      }
+    },
+    created() {
+      this.TREE_DATA = TREE_DATA;
+    }
   }
-}
 </script>
-
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

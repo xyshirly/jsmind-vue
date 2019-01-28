@@ -1,0 +1,152 @@
+<template>
+  <div class="risk-node"
+       :data-node-id="node.id"
+       :style="{top: `${node.position.top * 50}px`, left: `${node.position.left}px`}"
+       @contextmenu.stop.prevent="rightClick">
+    <div class="risk-node-label">
+      <span @click.stop.prevent="clickNode(node)">
+        <span :class="{'node-active': node.selected}">{{node.label}}</span>
+        <i v-if="node.showChild && node.children.length > 0"  @click.stop.prevent="handleFold(node)"  class="el-icon-remove-outline"></i>
+        <i v-if="!node.showChild && node.children.length > 0" @click.stop.prevent="handleExpand(node)" class="el-icon-circle-plus-outline"></i>
+      </span>
+    </div>
+
+    <div v-if="node.showOptions" class="risk-node-options" :class="{'risk-node-options-position': node.type !== 'ROOT'}">
+      <p v-if="node.type !== 'ROOT'" @click.stop.prevent="removeNode(node)">删除节点</p>
+      <p @click.stop.prevent="handleClick(node)">节点属性</p>
+      <p @click.stop.prevent="addNode(node)">新增子节点</p>
+    </div>
+  </div>
+</template>
+<script>
+  export default {
+    name: 'MapNode',
+    props: ['node'],
+    data() {
+      return {
+        showOptions: false
+      }
+    },
+    created(){
+    },
+    methods: {
+      /**
+       * 展开折叠事件
+       */
+      handleFold(node) {
+        this.$emit('handleFold', node);
+      },
+      /**
+       * 展开折叠事件
+       */
+      handleExpand(node) {
+        this.$emit('handleExpand', node);
+      },
+
+      /**
+       * 单击事件：显示节点信息弹窗
+       */
+      handleClick(node) {
+        this.$emit('handleClick', node);
+      },
+
+      /**
+       * 右键事件
+       */
+      rightClick() {
+        this.$emit('rightClick', this.node.id);
+      },
+
+      clickNode(node) {
+        this.$emit('clickNode', node.id);
+      },
+
+      /**
+       *  删除一个节点
+       */
+      removeNode(node) {
+        this.$confirm('确定删除此节点?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          this.$emit('removeNode', node);
+          this.showOptions = false;
+        }).catch(() => {
+          //do nothing
+        })
+      },
+
+      /**
+       * 新增一个节点
+       */
+      addNode(node) {
+        this.$emit('addNode', node);
+
+        setTimeout(_ => {
+          this.showOptions = false;
+        }, 300)
+      }
+    }
+  }
+</script>
+<style lang="scss" scoped>
+  .risk-node {
+    position: absolute;
+
+    .node-active {
+      color: #d78c16;
+    }
+
+    .risk-node-label {
+      color: #ffffff;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      border-radius: 5px;
+      background-color: #24569b;
+      padding: 5px !important;
+
+      i {
+        padding-left: 20px;
+        cursor: pointer;
+      }
+      span {
+        cursor: pointer;
+      }
+    }
+
+    .risk-node-options {
+      font-size: .8rem;
+      min-width: 80px;
+      bottom: -65px;
+      right: -50px;
+      z-index: 100;
+      cursor: pointer;
+      border-radius: 5px;
+      position: absolute;
+      background-color: #ffffff;
+
+      p {
+        padding: 5px 10px;
+      }
+      p:hover {
+        color: #24569b;
+      }
+    }
+    .risk-node-options-position {
+      bottom: -94px !important;
+    }
+    .risk-node-options:before {
+      position: absolute;
+      top: -7px;
+      left: 9px;
+      display: inline-block;
+      border-right: 7px solid transparent;
+      border-bottom: 7px solid #ccc;
+      border-left: 7px solid transparent;
+      border-bottom-color: #ffffff;
+      content: '';
+    }
+  }
+</style>
