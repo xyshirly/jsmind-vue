@@ -2,8 +2,7 @@
   <div class="risk-map-container" @click.stop.prevent="removeAllOptionMenu">
     <svg width="100%" :height="nodes[Object.keys(nodes)[0]].weight * 50 + 'px'" xmlns="http://www.w3.org/2000/svg"
          xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative;">
-      <path v-for="path in pathes" fill="none" stroke="#787878" :d="path.d"
-            style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
+      <path v-for="path in pathes" fill="none" stroke="#787878" :d="path.d" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path>
     </svg>
     <map-node v-for="nodeId in visibleNodes" :node="nodes[nodeId]"
                :key="nodeId"

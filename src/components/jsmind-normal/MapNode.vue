@@ -5,7 +5,8 @@
        @contextmenu.stop.prevent="rightClick">
     <div class="risk-node-label">
       <span @click.stop.prevent="selectNode(node)">
-        <span :class="{'node-active': node.selected}">{{node.label}}</span>
+        <span v-if="!isEdit" :class="{'node-active': node.selected}" @dblclick.stop.prevent="dbClickLabel">{{node.label}}</span>
+        <input v-if="isEdit" type="text" v-model="node.label" @keyup.enter="saveNodeInfo"/>
         <i v-if="node.showChild && node.children.length > 0"  @click.stop.prevent="handleFold(node)"  class="el-icon-remove-outline"></i>
         <i v-if="!node.showChild && node.children.length > 0" @click.stop.prevent="handleExpand(node)" class="el-icon-circle-plus-outline"></i>
       </span>
@@ -23,12 +24,20 @@
     props: ['node'],
     data() {
       return {
-        showOptions: false
+        showOptions: false,
+        isEdit: false,
       }
     },
     created(){
     },
     methods: {
+      dbClickLabel() {
+        this.isEdit = true;
+      },
+      saveNodeInfo() {
+        this.isEdit = false;
+        this.$emit('saveNodeInfo');
+      },
       handleFold(node) {
         this.$emit('handleFold', node);
       },
