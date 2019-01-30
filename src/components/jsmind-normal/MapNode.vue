@@ -4,7 +4,7 @@
        :style="{top: `${node.position.top * 50}px`, left: `${node.position.left}px`}"
        @contextmenu.stop.prevent="rightClick">
     <div class="risk-node-label">
-      <span @click.stop.prevent="clickNode(node)">
+      <span @click.stop.prevent="selectNode(node)">
         <span :class="{'node-active': node.selected}">{{node.label}}</span>
         <i v-if="node.showChild && node.children.length > 0"  @click.stop.prevent="handleFold(node)"  class="el-icon-remove-outline"></i>
         <i v-if="!node.showChild && node.children.length > 0" @click.stop.prevent="handleExpand(node)" class="el-icon-circle-plus-outline"></i>
@@ -13,7 +13,6 @@
 
     <div v-if="node.showOptions" class="risk-node-options" :class="{'risk-node-options-position': node.type !== 'ROOT'}">
       <p v-if="node.type !== 'ROOT'" @click.stop.prevent="removeNode(node)">删除节点</p>
-      <p @click.stop.prevent="handleClick(node)">节点属性</p>
       <p @click.stop.prevent="addNode(node)">新增子节点</p>
     </div>
   </div>
@@ -38,16 +37,12 @@
         this.$emit('handleExpand', node);
       },
 
-      handleClick(node) {
-        this.$emit('handleClick', node);
-      },
-
       rightClick() {
         this.$emit('rightClick', this.node.id);
       },
 
-      clickNode(node) {
-        this.$emit('clickNode', node.id);
+      selectNode(node) {
+        this.$emit('selectNode', node.id);
       },
 
       removeNode(node) {
@@ -119,7 +114,7 @@
       }
     }
     .risk-node-options-position {
-      bottom: -142px !important;
+      bottom: -102px !important;
     }
     .risk-node-options:before {
       top: -7px;

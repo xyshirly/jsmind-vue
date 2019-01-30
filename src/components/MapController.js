@@ -50,15 +50,13 @@ export class MapController {
     }
   }
 
-  updateSelected(nodeId) {
+  updateSelectedStatus(nodeId) {
     for(let id in this.nodes) {
-      if (id === nodeId) {
-        this.nodes[nodeId].selected = !this.nodes[nodeId].selected;
-        return this.nodes[nodeId];
-      } else {
-        this.nodes[id].selected = false;
-      }
+      this.nodes[id].selected = false;
     }
+
+    this.nodes[nodeId].selected = true;
+    return this.nodes[nodeId];
   }
 
   setUnselectedForAllNodes() {
