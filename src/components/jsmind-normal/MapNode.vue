@@ -30,29 +30,18 @@
     created(){
     },
     methods: {
-      /**
-       * 展开折叠事件
-       */
       handleFold(node) {
         this.$emit('handleFold', node);
       },
-      /**
-       * 展开折叠事件
-       */
+
       handleExpand(node) {
         this.$emit('handleExpand', node);
       },
 
-      /**
-       * 单击事件：显示节点信息弹窗
-       */
       handleClick(node) {
         this.$emit('handleClick', node);
       },
 
-      /**
-       * 右键事件
-       */
       rightClick() {
         this.$emit('rightClick', this.node.id);
       },
@@ -61,9 +50,6 @@
         this.$emit('clickNode', node.id);
       },
 
-      /**
-       *  删除一个节点
-       */
       removeNode(node) {
         this.$confirm('确定删除此节点?', '提示', {
           confirmButtonText: '确定',
@@ -77,9 +63,6 @@
         })
       },
 
-      /**
-       * 新增一个节点
-       */
       addNode(node) {
         this.$emit('addNode', node);
 

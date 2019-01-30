@@ -45,9 +45,7 @@ export class MapController {
   updateOptionStatus(nodeId) {
     for(let id in this.nodes) {
       if (id == nodeId) {
-        this.nodes[nodeId].showOptions = !this.nodes[nodeId].showOptions;
-      } else {
-        this.nodes[id].showOptions = false;
+        this.nodes[nodeId].showOptions = true;
       }
     }
   }
@@ -60,6 +58,12 @@ export class MapController {
       } else {
         this.nodes[id].selected = false;
       }
+    }
+  }
+
+  setUnselectedForAllNodes() {
+    for (let id in this.nodes) {
+      this.nodes[id].showOptions = false;
     }
   }
 

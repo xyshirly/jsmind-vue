@@ -1,5 +1,5 @@
 <template>
-  <div class="risk-map-container">
+  <div class="risk-map-container" @click.stop.prevent="removeAllOptionMenu">
     <svg width="100%" :height="nodes[Object.keys(nodes)[0]].weight * 50 + 'px'" xmlns="http://www.w3.org/2000/svg"
          xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative;">
       <path v-for="path in pathes" fill="none" stroke="#787878" :d="path.d"
@@ -103,6 +103,13 @@
           this.pathes = controller.pathArr;
         });
       },
+
+      removeAllOptionMenu() {
+        console.log('****************');
+        controller.setUnselectedForAllNodes();
+        this.refreshDom();
+      },
+
       /**
        * 折叠节点
        */
@@ -143,13 +150,7 @@
        * 删除子节点
        */
       removeNode(node) {
-        if (node.type === 'ROOT') {
-          showMessage(this, "warning", "根节点不能删除");
-          return;
-        }
-
         controller.removeNode(node.id);
-
         this.nodes = controller.nodes;
         this.visibleNodes = controller.getVisibleUINodes();
 
@@ -169,9 +170,6 @@
 
           this.nodes = controller.nodes;
         });
-        const json = controller.transferNodesToTree(this.nodes);
-        //调用后台接口
-        this.doSave(json);
       },
 
       /**
