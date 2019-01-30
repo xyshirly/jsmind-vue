@@ -119,34 +119,35 @@
     .risk-node-options {
       font-size: .8rem;
       min-width: 80px;
-      bottom: -65px;
+      bottom: -100px;
       right: -50px;
       z-index: 100;
       cursor: pointer;
       border-radius: 5px;
       position: absolute;
-      background-color: #ffffff;
+      color: #ffffff;
+      background-color: #24569b;
 
       p {
         padding: 5px 10px;
       }
       p:hover {
-        color: #24569b;
+        color: #d78c16;
       }
     }
     .risk-node-options-position {
-      bottom: -94px !important;
+      bottom: -142px !important;
     }
     .risk-node-options:before {
-      position: absolute;
       top: -7px;
       left: 9px;
+      content: '';
+      position: absolute;
       display: inline-block;
       border-right: 7px solid transparent;
       border-bottom: 7px solid #ccc;
       border-left: 7px solid transparent;
-      border-bottom-color: #ffffff;
-      content: '';
+      border-bottom-color: #24569b;
     }
   }
 </style>
