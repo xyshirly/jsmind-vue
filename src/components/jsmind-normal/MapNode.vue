@@ -6,7 +6,7 @@
     <div class="risk-node-label">
       <span @click.stop.prevent="selectNode(node)">
         <span v-if="!isEdit" :class="{'node-active': node.selected}" @dblclick.stop.prevent="dbClickLabel">{{node.label}}</span>
-        <input v-if="isEdit" type="text" v-model="node.label" @keyup.enter="saveNodeInfo"/>
+        <input v-if="isEdit" type="text" v-model="node.label" @keyup.enter="saveNodeInfo" @blur="handleBlur" v-focus/>
         <i v-if="node.showChild && node.children.length > 0"  @click.stop.prevent="handleFold(node)"  class="el-icon-remove-outline"></i>
         <i v-if="!node.showChild && node.children.length > 0" @click.stop.prevent="handleExpand(node)" class="el-icon-circle-plus-outline"></i>
       </span>
@@ -28,9 +28,10 @@
         isEdit: false,
       }
     },
-    created(){
-    },
     methods: {
+      handleBlur() {
+        this.isEdit = false;
+      },
       dbClickLabel() {
         this.isEdit = true;
       },

@@ -6,7 +6,7 @@
 
 <script>
   import JsMap from "./components/jsmind-normal/JSMap";
-  import {aa, TREE_DATA} from './components/jsmind-normal/mock_data.js'
+  import {TREE_DATA} from './components/jsmind-normal/mock_data.js'
 
   export default {
     components: {JsMap},

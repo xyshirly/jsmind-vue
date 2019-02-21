@@ -35,7 +35,7 @@
       }
     },
     watch: {
-      data: function(val, oldVal) {
+      data: function(val) {
         controller.buildFromRaw(val);
         controller.calculateWeight();
         controller.calculateBoundaryTop();
@@ -147,6 +147,7 @@
           label: '新增子节点',
           showChild: true,
           showOptions: false,
+          selected: false,
           position: {top: null, left: null}
         });
 
