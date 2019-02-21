@@ -137,7 +137,7 @@
 
       /**
        * 添加一个子节点
-       * @param currentNode
+       * @param node
        */
       addNode(node) {
         let parentId = node.id;
@@ -167,6 +167,7 @@
 <style lang="scss" scoped>
   .risk-map-container {
     height: 100%;
+    font-size: .9rem;
     position: relative;
 
     .tab-container {
@@ -215,7 +216,6 @@
     }
     .el-input__inner, .el-textarea__inner {
       font-size: .8rem;
-      font-family: "楷体", "Kaiti SC", "STKaiti" !important;;
       color: #ffffff;
       background-color: #295184 !important;
     }
